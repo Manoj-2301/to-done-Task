@@ -71,9 +71,7 @@ const Task = ({ tasks, setTasks }) => {
         <FormModal
           setTasks={setTasks}
           tasks={tasks}
-          updateValue={updateValue}
-          text="Edit"
-          closeModal={() => setFormEdit(false)}
+          updateValue={updateValue}        
         />
       )}
     </div>
