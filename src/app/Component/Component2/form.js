@@ -1,9 +1,12 @@
+"use client"
 import "./style.scss";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react"
 
-const FormModal = ({ setTasks, tasks, setIsFormOpen }) => {
+
+const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,text }) => {
   const schema = yup.object().shape({
     task: yup.string().required(),
     emoji: yup.string(),
@@ -12,7 +15,18 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen }) => {
     extra: yup.string(),
   });
 
-  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit,setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  // useEffect(() => {
+  //     setValue("task", updateValue.task);
+  //     setValue("emoji", updateValue.emoji);
+  //     setValue("start", updateValue.start);
+  //     setValue("end", updateValue.end);
+  //     setValue("extra", updateValue.extra);
+  //     }, []);
+
 
   const onSubmit = (newData) => {
     const id = Math.floor(Math.random() * 1000) + 1;
@@ -28,29 +42,29 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen }) => {
           <div className="task-field">
             <div className="task_entery">
               <label>Enter Task</label>
-              <input type="text" placeholder="Enter Task" {...register("task")} />
+              <input type="text" placeholder="Enter Task" name="task"{...register("task")} />
             </div>
             <div className="task_entery">
               <label>Enter emoji</label>
-              <input type="text" placeholder="add emoji/work" {...register("emoji")} />
+              <input type="text" placeholder="add emoji/work" name=" emoji"{...register("emoji")} />
             </div>
           </div>
           <div className="task-field">
             <div className="task_entery">
               <label>Enter start Time</label>
-              <input type="time" {...register("start")} />
+              <input type="time" name="start" {...register("start")} />
             </div>
             <div className="task_entery">
               <label>Enter end Time</label>
-              <input type="time" {...register("end")} />
+              <input type="time" name="end" {...register("end")} />
             </div>
           </div>
           <div className="task_entery">
             <label>Enter purpose</label>
-            <input type="text" placeholder="purpose" {...register("extra")} />
+            <input type="text" placeholder="purpose" name {...register("extra")} />
           </div>
           <button type="submit" className="btn_form">
-            ADD
+            {text}
           </button>
         </form>
       </div>

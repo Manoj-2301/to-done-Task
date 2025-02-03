@@ -4,10 +4,9 @@ import Image from "next/image"; // Correct import
 import { FaPlus } from "react-icons/fa";
 import Form from "../Component2/form";
 import { FaRegFileLines } from "react-icons/fa6";
-
 import "./style.scss";
 
-const Add = ({ setTasks, tasks }) => {
+const Add = ({ setTasks, tasks , }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const clickToOpen = () => {
@@ -42,7 +41,7 @@ const Add = ({ setTasks, tasks }) => {
       </div>
       {isFormOpen && (
         <div className="form">
-          <Form setTasks={setTasks} tasks={tasks} setIsFormOpen={setIsFormOpen}  />
+          <Form setTasks={setTasks} tasks={tasks} setIsFormOpen={setIsFormOpen} text="ADD"  />
         </div>
       )}
     </div>
