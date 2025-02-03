@@ -72,6 +72,7 @@ const Task = ({ tasks, setTasks }) => {
           setTasks={setTasks}
           tasks={tasks}
           updateValue={updateValue}        
+          setFormEdit={setFormEdit}        
         />
       )}
     </div>

@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react"
 
 
-const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,setFormEdit }) => {
+const FormModal = ({ setTasks, tasks, setIsFormOpen, updateValue, setFormEdit }) => {
   const schema = yup.object().shape({
     task: yup.string().required(),
     emoji: yup.string(),
@@ -15,32 +15,33 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,setFormEdit }) =
     extra: yup.string(),
   });
 
-  const { register, handleSubmit,setValue } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     resolver: yupResolver(schema),
   });
 
   useEffect(() => {
-    if (updateValue){
+    if (updateValue) {
       setValue("task", updateValue.task);
       setValue("emoji", updateValue.emoji);
       setValue("start", updateValue.start);
       setValue("end", updateValue.end);
       setValue("extra", updateValue.extra);
-      }
-   }, []);
-  
-  const onSubmit = (newData) => {
-    if(updateValue){
-      const Updated = tasks.map((task) =>
-        task.id === updateValue.id ? { ...task} : task);
-      setTasks(Updated);
-      setFormEdit(false)
     }
-    else{      
-    const id = Math.floor(Math.random() * 1000) + 1;
-    const newTask = { id, ...newData };
-    setTasks([...tasks, newTask]);
-    setIsFormOpen(false);
+  }, []);
+
+  const onSubmit = (newData) => {
+    if (updateValue) {
+      setTasks(tasks.map(val => {
+        if(val.id == updateValue.id) return {...newData, id: val.id}
+        return val
+      }));
+      setFormEdit(false);
+    }
+    else {
+      const id = Math.floor(Math.random() * 1000) + 1;
+      const newTask = { id, ...newData };
+      setTasks([...tasks, newTask]);
+      setIsFormOpen(false);
     }
   };
 
@@ -73,7 +74,7 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,setFormEdit }) =
             <input type="text" placeholder="purpose" name {...register("extra")} />
           </div>
           <button type="submit" className="btn_form">
-          {updateValue ? "Update" : "Add"}
+            {updateValue ? "Update" : "Add"}
           </button>
         </form>
       </div>
