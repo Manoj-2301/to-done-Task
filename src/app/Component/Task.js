@@ -1,14 +1,14 @@
-"use client"
+"use client";
 import "./style.scss";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoTimeOutline } from "react-icons/io5";
-import { useState } from "react"
+import { useState } from "react";
 import FormModal from "./Component2/form";
-const Task = ({ tasks, setTasks,text }) => {
+
+const Task = ({ tasks, setTasks }) => {
   const [isPopOpen, setIsPopOpen] = useState(null);
   const [formEdit, setFormEdit] = useState(false);
-  const [updateValue, setUpdateValue] = useState();
-
+  const [updateValue, setUpdateValue] = useState(null);
 
   const Delete = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -21,24 +21,30 @@ const Task = ({ tasks, setTasks,text }) => {
       )
     );
   };
-  const clickToPop = (id) => {
-    setIsPopOpen(isPopOpen === id ? null : id);
-  };
-  const onEdit = () => {
-    setFormEdit((formEdit) => !formEdit)
-    setUpdateValue(tasks)
-  }
 
+  const clickToPop = (id) => {
+    setIsPopOpen((prev) => (prev === id ? null : id)); 
+  };
+
+  const onEdit = (task) => {
+    setFormEdit((openedit) => !openedit);
+    setUpdateValue(task);
+  };
 
   return (
     <div className="task_content">
       {tasks.map((task) => (
         <div key={task.id} className="task_box">
           <div className="task_add">
-            <input type="checkbox" className="check"
+            <input
+              type="checkbox"
+              className="check"
               checked={task.strike || false}
-              onChange={() => toggleHandle(task.id)} />
-            <p className={`strip ${task.strike ? "strike" : ""}`}>{task.task}</p>
+              onChange={() => toggleHandle(task.id)}
+            />
+            <p className={`strip ${task.strike ? "strike" : ""}`}>
+              {task.task}
+            </p>
             {task.emoji && <p className="fav_icon">{task.emoji}</p>}
             {task.extra && <p className="type">{task.extra}</p>}
           </div>
@@ -50,16 +56,26 @@ const Task = ({ tasks, setTasks,text }) => {
             <button className="dot_btn" onClick={() => clickToPop(task.id)}>
               <BsThreeDotsVertical />
             </button>
-            {/* edit form  */}
-            {formEdit && (<FormModal setTasks={setTasks} tasks={tasks} updateValue={updateValue} text="Edit" />)}
 
-            {isPopOpen === task.id && (<div className="edit_pop">
-              <p className="edit" onClick={onEdit} >Edit</p>
-              <p className="delete" onClick={() => Delete(task.id)}>Delete</p>
-            </div>)}
+            {isPopOpen === task.id && (
+              <div className="edit_pop">
+                <p className="edit" onClick={() => onEdit(task)} setFormEdit={setFormEdit}>Edit</p>
+                <p className="delete" onClick={() => Delete(task.id)}>Delete</p>
+              </div>
+            )}
           </div>
         </div>
       ))}
+
+      {formEdit && (
+        <FormModal
+          setTasks={setTasks}
+          tasks={tasks}
+          updateValue={updateValue}
+          text="Edit"
+          closeModal={() => setFormEdit(false)}
+        />
+      )}
     </div>
   );
 };

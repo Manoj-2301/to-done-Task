@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react"
 
 
-const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,text }) => {
+const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,setFormEdit }) => {
   const schema = yup.object().shape({
     task: yup.string().required(),
     emoji: yup.string(),
@@ -19,20 +19,29 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,text }) => {
     resolver: yupResolver(schema),
   });
 
-  // useEffect(() => {
-  //     setValue("task", updateValue.task);
-  //     setValue("emoji", updateValue.emoji);
-  //     setValue("start", updateValue.start);
-  //     setValue("end", updateValue.end);
-  //     setValue("extra", updateValue.extra);
-  //     }, []);
-
-
+  useEffect(() => {
+    if (updateValue){
+      setValue("task", updateValue.task);
+      setValue("emoji", updateValue.emoji);
+      setValue("start", updateValue.start);
+      setValue("end", updateValue.end);
+      setValue("extra", updateValue.extra);
+      }
+   }, []);
+  
   const onSubmit = (newData) => {
+    if(updateValue){
+      const Updated = tasks.map((task) =>
+        task.id === updateValue.id ? { ...task} : task);
+      setTasks(Updated);
+      setFormEdit(false)
+    }
+    else{      
     const id = Math.floor(Math.random() * 1000) + 1;
     const newTask = { id, ...newData };
     setTasks([...tasks, newTask]);
     setIsFormOpen(false);
+    }
   };
 
   return (
@@ -64,7 +73,7 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen,updateValue,text }) => {
             <input type="text" placeholder="purpose" name {...register("extra")} />
           </div>
           <button type="submit" className="btn_form">
-            {text}
+          {updateValue ? "Update" : "Add"}
           </button>
         </form>
       </div>
