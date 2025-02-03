@@ -1,0 +1,50 @@
+.add_task{
+    position: fixed;
+    bottom:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+    .icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-right: 15px;
+    }
+    .add_title{
+        padding-left: 10px;
+        display:flex;
+        gap: 20px;
+        cursor: pointer;
+
+    }
+    .command-icon{
+        background-color: #3e3e3e;
+        padding: 8px;
+        border-radius: 15px;
+    }
+    .command-ico{
+        background-color: #3e3e3e;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+}
+.last_icon{
+  position:fixed;
+    bottom:15px;
+    right:105px;
+    padding: 15px;
+    background-color:white;
+    border-radius:10px;
+}
+.form{
+position:fixed;
+bottom:100px;
+}

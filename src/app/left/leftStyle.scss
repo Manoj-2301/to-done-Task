@@ -1,0 +1,93 @@
+.main_nav {
+  position: fixed;
+  left:0;
+  right: 0;
+   width: 21%;
+  height: 100dvh;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  .heading {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .nav_left {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      padding: 1px 20px 1px 1px;
+      transition: all 0.5s ease-out;
+      margin-bottom: 5px;
+
+      &:hover {
+        background-color: #f6f6f6;
+        border-radius: 10px;
+      }
+      .num_box {
+        padding: 10px 10px;
+        background-color: #f6f6f6;
+        border-radius: 5px;
+        &:hover {
+          background-color: white;
+        }
+      }
+      .home_logo,
+      .about_logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 24px 10px;
+      }
+      .checkbox {
+        padding: 10px;
+        border: 2px solid black;
+        background-color: whitesmoke;
+        border-radius: 5px;
+      }
+      .check1 {
+        border: 2px solid purple;
+      }
+      .check2 {
+        border: 2px solid blue;
+      }
+    }
+  }
+  .create_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    padding: 24px 10px;
+    margin-top: 20px;
+    transition: all 0.5s ease-out;
+    &:hover {
+        background-color: #f6f6f6;
+        border-radius: 10px;
+      }
+    .create_para {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+    }
+    .create_logo {
+      display: flex;
+      gap: 10px;
+      padding-right: 10px;
+      .logo1{
+        display: flex;
+        align-items: center;
+        background-color: rgb(231, 231, 231);
+        padding: 5px;
+        border-radius: 100%;
+      }
+    }
+  }
+}
