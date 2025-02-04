@@ -2,17 +2,15 @@
 import "./style.scss";
 import { FaChevronDown } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Task from "../Component/Task";
 import Add from "../Component/Component1/Add";
 import { useState, useEffect } from "react";
-
 
 const CenterNav = () => {
   const[tasks, setTasks] =useState([
     {
       id:1,
       task: "Jogging",
-      emoji: "💪",
+      emoji: "🏃",
       extra:"",
       start: "06:00",
       end: "07:30",
@@ -29,26 +27,13 @@ const CenterNav = () => {
     },{
       id:3,
       task: "Cardio",
-      emoji: "💪",
+      emoji: "🫀",
       extra:"",
       start: "06:00",
       end: "07:30",
       strike:false,
     }
   ])
-
-// useEffect(()=>{
-//   const FetchData = async () => {
-//       const res = await fetch("https://678f25af49875e5a1a90af20.mockapi.io/Users", {
-//         headers: {
-//           "Content-type": "application/json",
-//         },
-//       });
-//       const jokeData = await res.json();
-//       setTasks(jokeData)
-//   }
-//   FetchData()
-// },[])
 
   console.log(tasks)
 
@@ -60,7 +45,7 @@ const CenterNav = () => {
             <p className="main_para_one">
               Good Morning, Sullivan! <span className="main_hand"> 👋</span>
             </p>
-            <p className="main_para_two">Today,Wed 29 Jan 2025</p>
+            <p className="main_para_two">Today,Tue 04 Feb 2025</p>
           </div>
           <div className="main_cta">
             <div className="btn">

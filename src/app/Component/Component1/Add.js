@@ -16,12 +16,13 @@ const Add = ({ setTasks, tasks }) => {
   // this is click function to open form when click on create new task.
   const clickToOpen = () => {
     setUpdateValue(null); //this is null or not provided as when we add new task we does not need old.
-    setIsFormOpen(true); // to open form
+    setIsFormOpen(true);
+
   };
 
+  // this is click function to open form when click on  edit task.
   const onEdit = (task) => {
-    setUpdateValue(task); //this is on edit it update the value.
-    setIsFormOpen(true);
+    setUpdateValue(task); //this is on edit it update the value.   
   };
 
   const clickToPop = (id) => {
@@ -30,12 +31,15 @@ const Add = ({ setTasks, tasks }) => {
 
 
   useEffect(() => {
-    if (updateValue) {//here update value is for to open the updated value .
+    if (updateValue) {
+      //here update value is for to open the updated value . on click of edit button.
       setIsFormOpen(true);//form open.
-    } else {//this if update value is not there.thats means when click on create new where update value is not needed.
+
+    } else {
+      //this if update value is not there.thats means when click on create new where update value is not needed.
       setIsFormOpen(false);
     }
-  }, [updateValue, isFormOpen]);
+  }, [updateValue]);
 
   return (
     <div>
@@ -70,6 +74,7 @@ const Add = ({ setTasks, tasks }) => {
             tasks={tasks}
             setIsFormOpen={setIsFormOpen}
             updateValue={updateValue}
+            setIsPopOpen={setIsPopOpen}
           />
         </div>
       )}

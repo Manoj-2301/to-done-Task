@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react"
 
 
-const FormModal = ({ setTasks, tasks, setIsFormOpen, updateValue, setFormEdit }) => {
+const FormModal = ({ setTasks, tasks, setIsFormOpen, updateValue, setIsPopOpen }) => {
   const schema = yup.object().shape({
     task: yup.string().required(),
     emoji: yup.string(),
@@ -35,7 +35,8 @@ const FormModal = ({ setTasks, tasks, setIsFormOpen, updateValue, setFormEdit })
         if(val.id == updateValue.id) return {...newData, id: val.id}
         return val
       }));
-      setFormEdit(false);
+      setIsFormOpen(false);
+      setIsPopOpen(false)
     }
     else {
       const id = Math.floor(Math.random() * 1000) + 1;
