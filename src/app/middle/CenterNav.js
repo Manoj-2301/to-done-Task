@@ -72,7 +72,6 @@ const CenterNav = () => {
             </div>
           </div>
         </div>
-        <Task tasks={tasks} setTasks={setTasks} />
       </div>
       <Add setTasks={setTasks} tasks={tasks}/>
     </div>

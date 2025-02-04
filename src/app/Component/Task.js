@@ -5,10 +5,10 @@ import { IoTimeOutline } from "react-icons/io5";
 import { useState } from "react";
 import FormModal from "./Component2/form";
 
-const Task = ({ tasks, setTasks }) => {
-  const [isPopOpen, setIsPopOpen] = useState(null);
-  const [formEdit, setFormEdit] = useState(false);
-  const [updateValue, setUpdateValue] = useState(null);
+const Task = ({ tasks, setTasks,clickToPop , isPopOpen, onEdit}) => {
+  // const [isPopOpen, setIsPopOpen] = useState(null);
+  // const [formEdit, setFormEdit] = useState(false);
+  // const [updateValue, setUpdateValue] = useState(null);
 
   const Delete = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -22,14 +22,14 @@ const Task = ({ tasks, setTasks }) => {
     );
   };
 
-  const clickToPop = (id) => {
-    setIsPopOpen((prev) => (prev === id ? null : id)); 
-  };
+  // const clickToPop = (id) => {
+  //   setIsPopOpen((prev) => (prev === id ? null : id));
+  // };
 
-  const onEdit = (task) => {
-    setFormEdit((openedit) => !openedit);
-    setUpdateValue(task);
-  };
+  // const onEdit = (task) => {
+  //   setFormEdit((openedit) => !openedit);
+  //   setUpdateValue(task);
+  // };
 
   return (
     <div className="task_content">
@@ -59,7 +59,7 @@ const Task = ({ tasks, setTasks }) => {
 
             {isPopOpen === task.id && (
               <div className="edit_pop">
-                <p className="edit" onClick={() => onEdit(task)} setFormEdit={setFormEdit}>Edit</p>
+                <p className="edit" onClick={() => onEdit(task)} >Edit</p>
                 <p className="delete" onClick={() => Delete(task.id)}>Delete</p>
               </div>
             )}
@@ -67,14 +67,14 @@ const Task = ({ tasks, setTasks }) => {
         </div>
       ))}
 
-      {formEdit && (
+      {/* {formEdit && (
         <FormModal
           setTasks={setTasks}
           tasks={tasks}
-          updateValue={updateValue}        
-          setFormEdit={setFormEdit}        
+          updateValue={updateValue}
+          setFormEdit={setFormEdit}
         />
-      )}
+      )} */}
     </div>
   );
 };
